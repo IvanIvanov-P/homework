@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hello, World!", "Hello, World!.vcxproj", "{435AF38A-C3A8-42DA-9E43-26F663BCCD8B}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HM119_7", "..\HM119_7\HM119_7.vcxproj", "{81884062-5905-4A1B-BD72-7C3B7A406F00}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{33066273-09C2-4FA0-990E-988D3590FC6B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hello, World!", "Hello, world!\Hello, World!.vcxproj", "{435AF38A-C3A8-42DA-9E43-26F663BCCD8B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HM119_Y7", "HM119_7\HM119_7.vcxproj", "{81884062-5905-4A1B-BD72-7C3B7A406F00}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HM119_Y8", "HM119_Y8\HM119_Y8.vcxproj", "{4CFD51F3-4EB1-4D08-A737-7EF22FD865D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,14 @@ Global
 		{81884062-5905-4A1B-BD72-7C3B7A406F00}.Release|x64.Build.0 = Release|x64
 		{81884062-5905-4A1B-BD72-7C3B7A406F00}.Release|x86.ActiveCfg = Release|Win32
 		{81884062-5905-4A1B-BD72-7C3B7A406F00}.Release|x86.Build.0 = Release|Win32
+		{4CFD51F3-4EB1-4D08-A737-7EF22FD865D1}.Debug|x64.ActiveCfg = Debug|x64
+		{4CFD51F3-4EB1-4D08-A737-7EF22FD865D1}.Debug|x64.Build.0 = Debug|x64
+		{4CFD51F3-4EB1-4D08-A737-7EF22FD865D1}.Debug|x86.ActiveCfg = Debug|Win32
+		{4CFD51F3-4EB1-4D08-A737-7EF22FD865D1}.Debug|x86.Build.0 = Debug|Win32
+		{4CFD51F3-4EB1-4D08-A737-7EF22FD865D1}.Release|x64.ActiveCfg = Release|x64
+		{4CFD51F3-4EB1-4D08-A737-7EF22FD865D1}.Release|x64.Build.0 = Release|x64
+		{4CFD51F3-4EB1-4D08-A737-7EF22FD865D1}.Release|x86.ActiveCfg = Release|Win32
+		{4CFD51F3-4EB1-4D08-A737-7EF22FD865D1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
