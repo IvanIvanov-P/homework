@@ -76,11 +76,12 @@ void task1()
 }
 // не буду изменять, кину на проверку в коммит
 
-void task2() // нихуя не работает 9 задание на 155 странице
+void task2() // вроде всё работает!
 {
 	double a = 0, min = 0, max = 0, summ = 0;  // min = numeric_limits<double>::max(), max = numeric_limits<double>::min();
 	int i = 0; //счётчик
 	string unit1 = "";
+	vector <double> v;
 
 	while (cin >> a >> unit1)
 	{
@@ -90,48 +91,143 @@ void task2() // нихуя не работает 9 задание на 155 странице
 		}
 		else if (unit1 == "ft")
 		{
-			a = (a * 12) * 2.54;
+			a = ((a * 12) * 2.54) / 100;
 		}
 		else if (unit1 == "in")
 		{
-			a *= 2.54;
+			a = (a * 2.54) / 100;
 		}
 
 		if (i == 0 and unit1 == "cm" or i == 0 and unit1 == "m" or i == 0 and unit1 == "ft" or i == 0 and unit1 == "in")
 		{
 			max = a;
-			cout << "Наибольшее среди ранее введённых " << a << unit1 << endl;
+			cout << "Наибольшее среди ранее введённых " << a << "m" << endl;
 			min = a;
-			cout << "Наименьшее среди ранее введённых " << min << unit1 << endl;
+			cout << "Наименьшее среди ранее введённых " << min << "m" << endl;
 			++i;
 		}
 
-		if (a >= max and i != 1 and unit1 == "cm" or a <= min and i != 1 and unit1 == "m" or a <= min
-			and i != 1 and unit1 == "ft" or a <= min and i != 1 and unit1 == "in")
+		if (a >= max and i != 1 and unit1 == "cm" or a >= max and i != 1 and unit1 == "m" or a >= max
+			and i != 1 and unit1 == "ft" or a >= max and i != 1 and unit1 == "in")
 		{
 			max = a;
-			cout << "Наибольшее среди ранее введённых " << a << unit1 << endl;
+			cout << "Наибольшее среди ранее введённых " << a << "m" << endl;
 		}
 
 		if (a <= min and i != 1 and unit1 == "cm" or a <= min and i != 1 and unit1 == "m" or a <= min
 			and i != 1 and unit1 == "ft" or a <= min and i != 1 and unit1 == "in")
 		{
 			min = a;
-			cout << "Наименьшее среди ранее введённых " << min << unit1 << endl;
+			cout << "Наименьшее среди ранее введённых " << min << "m" << endl;
 		}
+		
 		++i;
+
 		if (unit1 == "cm" or unit1 == "m" or unit1 == "ft" or unit1 == "in")
+		{
 			summ += a;
+			v.push_back(a);
+		}
 	}
-	cout << summ;
+
+	sort(v.begin(), v.end());
+
+	for (int i1 = 0; v.size() > i1; ++i1)
+	{
+		cout << v[i1] << "  " << "m" << endl;
+	}
+
+	cout << "\n" << "Сумма всех введённых величин равна : " << summ;
+}
+
+void ex2()
+{
+	{
+		vector<double> temps; // значения температур
+		double temp;
+
+		while (cin >> temp)
+		// считываем данные
+			temps.push_back(temp); // заносим их в вектор
+		// вычисляем среднюю температуру:
+
+		double sum = 0;
+
+		for (int i = 0; i < temps.size(); ++i) sum += temps[i];
+		cout << "Average temperature: " << sum / temps.size() << endl;
+
+		// вычисляем медиану температуры:
+
+		sort(temps.begin(), temps.end()); // сортируем значения
+
+		// температуры
+		// "от начала до конца"
+
+		if (temps.size() / 2 == 1)
+			cout << "Медиана температуры: " << temps[temps.size() / 2] << endl;
+		else
+			cout << "Медиана температуры: " << (temps[temps.size() / 2] + temps[(temps.size() /2) - 1]) / 2 << endl;
+	}
+}
+
+void ex3()
+{
+	double n = 0;
+	int summ = 0;
+	vector <double> v;
+
+	while (cin >> n)
+	{
+		v.push_back(n);
+	}
+
+	sort(v.begin(), v.end());
+
+	for (int i = 0; v.size() > i; ++i)
+	{
+		summ += v[i];
+	}
+
+	cout << "Сумма расстояния между всеми городами равна: " << summ << endl;
+	cout << "Наименьшее расстояние между городами равно: " << v[0] << endl;
+	cout << "Наименьшее расстояние между городами равно: " << v[v.size() - 1] << endl;
+}
+
+void ex4()
+{
+	int x = 100;
+	string choise = "", ranswer = "no";
+
+	while (ranswer == "no")
+	{
+		cout << "Ваше число больше " << x << "?" << endl;
+		cin >> choise;
+
+		if (choise == "yes")
+		{
+			x += (x / 2); // число округляется в меньшую сторону
+			cout << "Ваше число " << x << "?" << endl;
+			cin >> ranswer;
+		}
+		else if (choise == "no")
+		{
+			x -= (x / 2); // число округляется в меньшую сторону
+			cout << "Ваше число " << x << "?" << endl;
+			cin >> ranswer;
+		}
+	}
+	cout << "Загаданное вами число: " << x << endl;
 }
 
 std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
 {
 	{"0", prelude},
 	{"101", task101},
-    {"1", task1},
-	{"2", task2}
+	{"1", task1},
+	{"2", task2},
+	{"ex2", ex2},
+	{"ex3", ex3},
+	{"ex4", ex4}
 };
 
 int main()
