@@ -195,25 +195,27 @@ void ex3()
 
 void ex4()
 {
-	int x = 100;
+	int x = 50, divmin = 25;
 	string choise = "", ranswer = "no";
 
-	while (ranswer == "no")
+	while (ranswer == "no" and 0 < x and x < 100)
 	{
 		cout << "¬аше число больше " << x << "?" << endl;
 		cin >> choise;
 
-		if (choise == "yes")
+		if (choise == "yes" and 0 < x and x < 100)
 		{
-			x += (x / 2); // число округл€етс€ в меньшую сторону
+			x += divmin; // число округл€етс€ в меньшую сторону
 			cout << "¬аше число " << x << "?" << endl;
 			cin >> ranswer;
+			divmin /= 2;
 		}
-		else if (choise == "no")
+		else if (choise == "no" and 0 < x and x < 100)
 		{
-			x -= (x / 2); // число округл€етс€ в меньшую сторону
+			x -= divmin; // число округл€етс€ в меньшую сторону
 			cout << "¬аше число " << x << "?" << endl;
 			cin >> ranswer;
+			divmin /= 2;
 		}
 	}
 	cout << "«агаданное вами число: " << x << endl;
