@@ -1,6 +1,7 @@
 #include "../Hello, world!/std_lib_facilities.h"
 #include <functional>
 
+///  Страница 154, "попробуйте"
 void prelude()
 {
    vector <string> words;
@@ -22,13 +23,13 @@ void prelude()
    for (int i1 = 0; badwords.size() >= i1; ++i1)
       for (int i2 = 0; words.size() >= i2; ++i2)
          if (words[i2] == badwords[i1])
-            cout << "BEEP" << endl;
+            cout << "BLEEP" << endl;
          else
             cout << words[i2] << endl;
 }
 
 
-///  Страница 155, задача номер 3
+///  Страница 155, задача 1-5
 void task101()
 {
    // можно ли не используя функцию abs выполнить задание?
@@ -46,6 +47,7 @@ void task101()
    }
 }
 
+///  Страница 155, задача 6
 void task1()
 {
    double a = 0, min = numeric_limits<double>::max(), max = numeric_limits<double>::min();
@@ -78,6 +80,7 @@ void task1()
 }
 // не буду изменять, кину на проверку в коммит
 
+///  Страница 155, задача номер 7-11
 void task2() // вроде всё работает!
 {
    double a = 0, min = 0, max = 0, summ = 0;  // min = numeric_limits<double>::max(), max = numeric_limits<double>::min();
@@ -142,6 +145,7 @@ void task2() // вроде всё работает!
    cout << "\n" << "Сумма всех введённых величин равна : " << summ;
 }
 
+///  Страница 157, упражнение номер 2
 void ex2()
 {
    {
@@ -155,7 +159,11 @@ void ex2()
 
       double sum = 0;
 
-      for (int i = 0; i < temps.size(); ++i) sum += temps[i];
+      for (int i = 0; i < temps.size(); ++i)
+      {
+         sum += temps[i];
+      }
+
       cout << "Average temperature: " << sum / temps.size() << endl;
 
       // вычисляем медиану температуры:
@@ -172,6 +180,7 @@ void ex2()
    }
 }
 
+///  Страница 157, упражнение номер 3
 void ex3()
 {
    double n = 0;
@@ -190,11 +199,12 @@ void ex3()
       summ += v[i];
    }
 
-   cout << "Сумма расстояния между всеми городами равна: " << summ << endl;
+   cout << "Сумма расстояний между всеми городами равна: " << summ << endl;
    cout << "Наименьшее расстояние между городами равно: " << v[0] << endl;
    cout << "Наименьшее расстояние между городами равно: " << v[v.size() - 1] << endl;
 }
 
+///  Страница 157, упражнение номер 4
 void ex4()
 {
    int x = 50, divmin = 25;
