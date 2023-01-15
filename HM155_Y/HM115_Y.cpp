@@ -44,7 +44,7 @@ void task101()
       else if (a == b)
          cout << a << " " << b << endl << endl;
    }
-};;
+}
 
 void task1()
 {
