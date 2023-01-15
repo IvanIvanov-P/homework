@@ -27,6 +27,8 @@ void prelude()
             cout << words[i2] << endl;
 }
 
+
+///  Страница 155, задача номер 3
 void task101()
 {
    // можно ли не используя функцию abs выполнить задание?
@@ -42,7 +44,7 @@ void task101()
       else if (a == b)
          cout << a << " " << b << endl << endl;
    }
-}
+};;
 
 void task1()
 {
