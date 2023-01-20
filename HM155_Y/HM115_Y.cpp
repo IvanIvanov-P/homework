@@ -110,13 +110,26 @@ void task2() // вроде всё работает!
          cout << "Наибольшее среди ранее введённых " << max << unit1 << endl;
          min = a;
          cout << "Наименьшее среди ранее введённых " << min << unit1 << endl;
-      }
 
-      if (unit1 == "cm" or unit1 == "m" or unit1 == "ft" or unit1 == "in")
-      {
          summ += a;
          v.push_back(a);
       }
+
+      // зачем два раза один и тот же if ??
+      // 
+      //if (unit1 == "cm" or unit1 == "m" or unit1 == "ft" or unit1 == "in")
+      //{
+      //   max = a;
+      //   cout << "Наибольшее среди ранее введённых " << max << unit1 << endl;
+      //   min = a;
+      //   cout << "Наименьшее среди ранее введённых " << min << unit1 << endl;
+      //}
+
+      //if (unit1 == "cm" or unit1 == "m" or unit1 == "ft" or unit1 == "in")
+      //{
+      //   summ += a;
+      //   v.push_back(a);
+      //}
    }
 
    while (cin >> a >> unit1)
@@ -134,23 +147,43 @@ void task2() // вроде всё работает!
          a = (a * 2.54) / 100;
       }
 
-      if (a >= max and unit1 == "cm" or a >= max and unit1 == "m" or a >= max and unit1 == "ft" or a >= max and unit1 == "in")
-      {
-         max = a;
-         cout << "Наибольшее среди ранее введённых " << a << "m" << endl;
-      }
-
-      if (a <= min and unit1 == "cm" or a <= min and unit1 == "m" or a <= min and unit1 == "ft" or a <= min and unit1 == "in")
-      {
-         min = a;
-         cout << "Наименьшее среди ранее введённых " << min << "m" << endl;
-      }
-
       if (unit1 == "cm" or unit1 == "m" or unit1 == "ft" or unit1 == "in")
       {
+         if (a >= max)
+         {
+            max = a;
+            cout << "Наибольшее среди ранее введённых " << a << "m" << endl;
+         }
+
+         if (a <= min)
+         {
+            min = a;
+            cout << "Наименьшее среди ранее введённых " << min << "m" << endl;
+         }
+
          summ += a;
          v.push_back(a);
       }
+
+      // Твой старый код
+      // 
+      //if (a >= max and unit1 == "cm" or a >= max and unit1 == "m" or a >= max and unit1 == "ft" or a >= max and unit1 == "in")
+      //{
+      //   max = a;
+      //   cout << "Наибольшее среди ранее введённых " << a << "m" << endl;
+      //}
+
+      //if (a <= min and unit1 == "cm" or a <= min and unit1 == "m" or a <= min and unit1 == "ft" or a <= min and unit1 == "in")
+      //{
+      //   min = a;
+      //   cout << "Наименьшее среди ранее введённых " << min << "m" << endl;
+      //}
+
+      //if (unit1 == "cm" or unit1 == "m" or unit1 == "ft" or unit1 == "in")
+      //{
+      //   summ += a;
+      //   v.push_back(a);
+      //}
    }
 
    sort(v.begin(), v.end());
