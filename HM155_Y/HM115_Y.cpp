@@ -340,7 +340,13 @@ void ex6()
       {
          cout << "Введите строку, чтобы перевести его в число" << endl;
          cin >> str;
-         strindex = find(v.begin(), v.end(), str); // гавно ебаное!!!!!
+         auto&& it = find(v.begin(), v.end(), str); // гавно ебаное!!!!!
+
+         if (it != v.end())
+            cout << "Найденная строка = " << *it <<"\n";
+         else
+            cout << "Строка не найдена !\n";
+
          cout << number << endl;
       }
       else if (str == "number")
