@@ -86,9 +86,38 @@ void task1()
 void task2() // вроде всё работает!
 {
    double a = 0, min = 0, max = 0, summ = 0;  // min = numeric_limits<double>::max(), max = numeric_limits<double>::min();
-   int i = 0; //счётчик
    string unit1 = "";
    vector <double> v;
+
+   if (cin >> a >> unit1)
+   {
+      if (unit1 == "cm")
+      {
+         a /= 100;
+      }
+      else if (unit1 == "ft")
+      {
+         a = ((a * 12) * 2.54) / 100;
+      }
+      else if (unit1 == "in")
+      {
+         a = (a * 2.54) / 100;
+      }
+
+      if (unit1 == "cm" or unit1 == "m" or unit1 == "ft" or unit1 == "in")
+      {
+         max = a;
+         cout << "Наибольшее среди ранее введённых " << max << unit1 << endl;
+         min = a;
+         cout << "Наименьшее среди ранее введённых " << min << unit1 << endl;
+      }
+
+      if (unit1 == "cm" or unit1 == "m" or unit1 == "ft" or unit1 == "in")
+      {
+         summ += a;
+         v.push_back(a);
+      }
+   }
 
    while (cin >> a >> unit1)
    {
@@ -105,30 +134,17 @@ void task2() // вроде всё работает!
          a = (a * 2.54) / 100;
       }
 
-      if (i == 0 and unit1 == "cm" or i == 0 and unit1 == "m" or i == 0 and unit1 == "ft" or i == 0 and unit1 == "in")
-      {
-         max = a;
-         cout << "Наибольшее среди ранее введённых " << a << "m" << endl;
-         min = a;
-         cout << "Наименьшее среди ранее введённых " << min << "m" << endl;
-         ++i;
-      }
-
-      if (a >= max and i != 1 and unit1 == "cm" or a >= max and i != 1 and unit1 == "m" or a >= max
-         and i != 1 and unit1 == "ft" or a >= max and i != 1 and unit1 == "in")
+      if (a >= max and unit1 == "cm" or a >= max and unit1 == "m" or a >= max and unit1 == "ft" or a >= max and unit1 == "in")
       {
          max = a;
          cout << "Наибольшее среди ранее введённых " << a << "m" << endl;
       }
 
-      if (a <= min and i != 1 and unit1 == "cm" or a <= min and i != 1 and unit1 == "m" or a <= min
-         and i != 1 and unit1 == "ft" or a <= min and i != 1 and unit1 == "in")
+      if (a <= min and unit1 == "cm" or a <= min and unit1 == "m" or a <= min and unit1 == "ft" or a <= min and unit1 == "in")
       {
          min = a;
          cout << "Наименьшее среди ранее введённых " << min << "m" << endl;
       }
-
-      ++i;
 
       if (unit1 == "cm" or unit1 == "m" or unit1 == "ft" or unit1 == "in")
       {
@@ -203,7 +219,7 @@ void ex3()
 
    cout << "Сумма расстояний между всеми городами равна: " << summ << endl;
    cout << "Наименьшее расстояние между городами равно: " << v[0] << endl;
-   cout << "Наименьшее расстояние между городами равно: " << v[v.size() - 1] << endl;
+   cout << "Наибольшее расстояние между городами равно: " << v[v.size() - 1] << endl;
 }
 
 ///  Страница 157, упражнение номер 4
@@ -215,24 +231,125 @@ void ex4()
    while (ranswer == "no" and 0 < x and x < 100)
    {
       cout << "Ваше число больше " << x << "?" << endl;
+//      cout << "divmin : " << divmin << endl; \\ // создавал для теста
       cin >> choise;
 
       if (choise == "yes" and 0 < x and x < 100)
       {
          x += divmin; // число округляется в меньшую сторону
+
+         if (x <= 0 or x >= 100)
+         {
+            cout << "Ошибка, ваше число должно быть больше 0 и меньше 100" << endl;
+            break;
+         }
+
          cout << "Ваше число " << x << "?" << endl;
          cin >> ranswer;
-         divmin /= 2;
+         divmin = divmin / 2;
+
+         if (divmin % 2 == 1 and divmin != 2)
+         {
+            ++divmin;
+         }
+         else if (divmin == 2 or divmin == 0)
+         {
+            divmin = 1;
+         }
       }
+
       else if (choise == "no" and 0 < x and x < 100)
       {
          x -= divmin; // число округляется в меньшую сторону
+         
+         if (x <= 0 or x >= 100)
+         {
+            cout << "Ошибка, ваше число должно быть больше 0 и меньше 100" << endl;
+            break;
+         }
+
          cout << "Ваше число " << x << "?" << endl;
          cin >> ranswer;
-         divmin /= 2;
+         divmin = divmin / 2;
+
+         if (divmin % 2 == 1 and divmin != 2)
+         {
+            ++divmin;
+         }
+         else if (divmin == 2 or divmin == 0)
+         {
+            divmin = 1;
+         }
       }
    }
-   cout << "Загаданное вами число: " << x << endl;
+
+   if (x > 0 and x < 100)
+   {
+      cout << "Загаданное вами число: " << x << endl;
+   }
+}
+
+void ex5()
+{
+   double a = 0, b = 0, result = 0;
+   string sign1 = "";
+
+   cout << "Введите два числа, а затем знак для выполнения операции" << endl;
+
+   while (cin >> a >> b >> sign1)
+   {
+      if (sign1 == "+")
+      {
+         result = a + b;
+         cout << "Сумма " << a << " и " << b << " равна " << result << endl;
+      }
+
+      if (sign1 == "-")
+      {
+         result = a - b;
+         cout << "Разность " << a << " и " << b << " равна " << result << endl;
+      }
+
+      if (sign1 == "*")
+      {
+         result = a * b;
+         cout << "Произведение " << a << " и " << b << " равно " << result << endl;
+      }
+
+      if (sign1 == "/")
+      {
+         result = a / b;
+         cout << "Деление " << a << " и " << b << " равно " << result << endl;
+      }
+
+      cout << "Введите два числа, а затем знак для выполнения операции" << endl;
+   }
+}
+
+void ex6()
+{
+   vector <string> v = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" };
+   int number = 0;
+   string str = "", strindex = "";
+
+   while (true)
+   {
+      cout << "Выберете, что вы хотите получить на выходе, если строку, то введите \"str\", а если число, то введите \"number\"" << endl;
+      cin >> str;
+      if (str == "str")
+      {
+         cout << "Введите строку, чтобы перевести его в число" << endl;
+         cin >> str;
+         strindex = find(v.begin(), v.end(), str); // гавно ебаное!!!!!
+         cout << number << endl;
+      }
+      else if (str == "number")
+      {
+         cout << "Введите число, чтобы перевести его в строковой вариант" << endl;
+         cin >> number;
+         cout << v[number - 1] << endl;
+      }
+   }
 }
 
 std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
@@ -243,7 +360,9 @@ std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
    {"2", task2},
    {"ex2", ex2},
    {"ex3", ex3},
-   {"ex4", ex4}
+   {"ex4", ex4},
+   {"ex5", ex5},
+   {"ex6", ex6}
 };
 
 int main()

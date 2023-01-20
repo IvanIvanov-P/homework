@@ -4,8 +4,9 @@ double x = 0, summ = 0;
 
 void sq()
 {
-	int a = 3.9, b = 2;
-	std::cout << a / b;
+	double x;
+	cin >> x;
+	cout << x;
 };
 
 
