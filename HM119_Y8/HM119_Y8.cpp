@@ -4,9 +4,10 @@ double x = 0, summ = 0;
 
 void sq()
 {
-	double x;
+	vector <string> v = { "test" };
+	string x = "";
 	cin >> x;
-	cout << x;
+	cout << v[x];
 };
 
 

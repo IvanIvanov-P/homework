@@ -369,6 +369,7 @@ void ex6()
    {
       cout << "Выберете, что вы хотите получить на выходе, если строку, то введите \"str\", а если число, то введите \"number\"" << endl;
       cin >> str;
+
       if (str == "str")
       {
          cout << "Введите строку, чтобы перевести его в число" << endl;
@@ -376,11 +377,9 @@ void ex6()
          auto&& it = find(v.begin(), v.end(), str); // гавно ебаное!!!!!
 
          if (it != v.end())
-            cout << "Найденная строка = " << *it <<"\n";
+            cout << *it <<"\n";
          else
-            cout << "Строка не найдена !\n";
-
-         cout << number << endl;
+            cout << "Строка не найдена !\n";;
       }
       else if (str == "number")
       {
@@ -388,6 +387,62 @@ void ex6()
          cin >> number;
          cout << v[number - 1] << endl;
       }
+   }
+}
+
+void ex7()
+{
+   vector <string> v = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" };
+   double result = 0, counter = 1, a = 0, b = 0, a1 = 0;
+   string sign1 = "";
+   signed char transition = ' ';
+
+   cout << "Введите первое число последовательно, затем введите \"|\" для выхода из цикла" << endl;
+
+   while (cin >> transition)
+   {
+      if (transition == '|')
+      {
+         break;
+      }
+      else
+      {
+         a1 = transition;
+         a = a * 10 + a1;
+         counter = counter * 10;
+      }
+   }
+//   a /= counter * (counter / 10);
+   cout << "Первое число: " << a << endl;
+
+
+   while (cin >> a >> b >> sign1)
+   {
+      if (sign1 == "+")
+      {
+         result = a + b;
+         cout << "Сумма " << a << " и " << b << " равна " << result << endl;
+      }
+
+      if (sign1 == "-")
+      {
+         result = a - b;
+         cout << "Разность " << a << " и " << b << " равна " << result << endl;
+      }
+
+      if (sign1 == "*")
+      {
+         result = a * b;
+         cout << "Произведение " << a << " и " << b << " равно " << result << endl;
+      }
+
+      if (sign1 == "/")
+      {
+         result = a / b;
+         cout << "Деление " << a << " и " << b << " равно " << result << endl;
+      }
+
+      cout << "Введите два числа, а затем знак для выполнения операции" << endl;
    }
 }
 
@@ -401,7 +456,8 @@ std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
    {"ex3", ex3},
    {"ex4", ex4},
    {"ex5", ex5},
-   {"ex6", ex6}
+   {"ex6", ex6},
+   {"ex7", ex7}
 };
 
 int main()
