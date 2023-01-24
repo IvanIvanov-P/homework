@@ -361,7 +361,7 @@ void ex5()
 
 void ex6()
 {
-   vector <string> v = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" };
+   vector <string> v = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
    int number = 0;
    string str = "", strindex = "";
 
@@ -385,39 +385,71 @@ void ex6()
       {
          cout << "Введите число, чтобы перевести его в строковой вариант" << endl;
          cin >> number;
-         cout << v[number - 1] << endl;
+         cout << v[number] << endl;
       }
    }
 }
 
 void ex7()
 {
-   vector <string> v = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" };
-   double result = 0, counter = 1, a = 0, b = 0, a1 = 0;
-   string sign1 = "";
-   signed char transition = ' ';
+   vector <string> vstr = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+   vector <string> vint = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+   double result = 0, a1 = 0, b1 = 0;
+   int a = 0, b = 0,  x = 1;
+   string sign1 = "", number = "", test = "";
 
-   cout << "Введите первое число последовательно, затем введите \"|\" для выхода из цикла" << endl;
+   // НАПОМИНАНИЕ!!!!
+   // Ввод чисел будет по одной цифре
+   // Ввод строкового вида чисел будет по одной строковой цифе
 
-   while (cin >> transition)
+   while (true)
    {
-      if (transition == '|')
-      {
-         break;
-      }
-      else
-      {
-         a1 = transition;
-         a = a * 10 + a1;
-         counter = counter * 10;
-      }
-   }
-//   a /= counter * (counter / 10);
-   cout << "Первое число: " << a << endl;
+      cout << "Введите первое число в строковом или числовом варианте по одной цифре, для прекращения ввода введите \"stop\"" << endl;
 
+      while (cin >> number)
+      {
+         for (int i = 0; i <= 9; ++i)
+         {
+            if (vstr[i] == number or number == vint[i])
+            {
+               a = a * 10 + i;
+               break;
+            }
+         }
 
-   while (cin >> a >> b >> sign1)
-   {
+        double a = a1;
+
+         if (number == "stop")
+            break;
+      }
+
+      cout << "Первое число равно " << a << endl;
+
+      cout << "Введите второе число в строковом или числовом варианте по одной цифре, для прекращения ввода введите \"stop\"" << endl;
+
+      while (cin >> number)
+      {
+         for (int i = 0; i <= 9; ++i)
+         {
+            if (vstr[i] == number or number == vint[i])
+            {
+               b = b * 10 + i;
+               break;
+            }
+         }
+
+         double b = b1;
+
+         if (number == "stop")
+            break;
+      }
+
+      cout << "Второе число равно " << b << endl;
+
+      cout << "Введите знак для выполнения операции вычисления" << endl;
+
+      cin >> sign1;
+
       if (sign1 == "+")
       {
          result = a + b;
@@ -438,11 +470,38 @@ void ex7()
 
       if (sign1 == "/")
       {
-         result = a / b;
+         result = double(a) / b;
          cout << "Деление " << a << " и " << b << " равно " << result << endl;
       }
+   }
+}
 
-      cout << "Введите два числа, а затем знак для выполнения операции" << endl;
+void ex8() // ex9 Тоже
+           // Максимальное количество зерен в типе int возможно в 30 клетках
+           // Максимальное количество зерен в типе double возможно в 1021 клетках
+{
+   int counter = 0;//, x = 1, seeds = 0;
+   double seeds = 0, x = 1;
+
+   while (true)
+   {
+      cout << "Введите количество зерён" << endl;
+      cin >> seeds;
+
+      while (x < seeds or seeds == 1)
+      {
+         if (seeds == 1)
+         {
+            counter = 1;
+            break;
+         }
+         x *= 2;
+         ++counter;
+      }
+
+      cout << "Надо заполнить " << counter << " клеток" << endl;
+      x = 1;
+      counter = 0;
    }
 }
 
@@ -457,7 +516,8 @@ std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
    {"ex4", ex4},
    {"ex5", ex5},
    {"ex6", ex6},
-   {"ex7", ex7}
+   {"ex7", ex7},
+   {"ex8", ex8}
 };
 
 int main()
