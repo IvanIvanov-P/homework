@@ -505,6 +505,83 @@ void ex8() // ex9 Тоже
    }
 }
 
+void ex10()
+{
+   vector <string> rsp = { "rock", "scissors", "paper" };
+   int userin = 0, randomi = 0;
+   
+   while (true)
+   {
+      cout << "Введите 1 для \"rock\" или 2 для \"scissors\" или 3 для \"paper\"" << endl;
+      cin >> userin;
+      cout << "Введите любое число от 0 до 2" << endl;
+      cin >> randomi;
+      randomi = randomi // пытаюсь сделать угадывание более сложным
+
+      switch (userin)
+      {
+      case 1:
+         if (rsp[randomi] == "rock")
+         {
+            cout << "Компьютеру выпал rock" << endl;
+            cout << "Ничья!" << endl;
+            break;
+         }
+         else if (rsp[randomi] == "scissiors")
+         {
+            cout << "Компьютеру выпал scissiors" << endl;
+            cout << "Вы победили!" << endl;
+            break;
+         }
+         else if (rsp[randomi] == "paper")
+         {
+            cout << "Компьютеру выпал paper" << endl;
+            cout << "Вы проиграли!" << endl;
+            break;
+         }
+      case 2:
+         if (rsp[randomi] == "rock")
+         {
+            cout << "Компьютеру выпал rock" << endl;
+            cout << "Вы проиграли!" << endl;
+            break;
+         }
+         else if (rsp[randomi] == "scissiors")
+         {
+            cout << "Компьютеру выпал scissiors" << endl;
+            cout << "Ничья!" << endl;
+            break;
+         }
+         else if (rsp[randomi] == "paper")
+         {
+            cout << "Компьютеру выпал paper" << endl;
+            cout << "Вы победили!" << endl;
+            break;
+         }
+      case 3:
+         if (rsp[randomi] == "rock")
+         {
+            cout << "Компьютеру выпал rock" << endl;
+            cout << "Вы победили!" << endl;
+            break;
+         }
+         else if (rsp[randomi] == "scissiors")
+         {
+            cout << "Компьютеру выпал scissiors" << endl;
+            cout << "Вы проиграли!" << endl;
+            break;
+         }
+         else if (rsp[randomi] == "paper")
+         {
+            cout << "Компьютеру выпал paper" << endl;
+            cout << "Ничья!" << endl;
+            break;
+         }
+            
+      }
+   }
+}
+
 std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
 {
    {"0", prelude},
@@ -517,7 +594,8 @@ std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
    {"ex5", ex5},
    {"ex6", ex6},
    {"ex7", ex7},
-   {"ex8", ex8}
+   {"ex8", ex8},
+   {"ex10", ex10}
 };
 
 int main()
