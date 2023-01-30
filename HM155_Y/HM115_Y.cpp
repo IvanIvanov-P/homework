@@ -514,9 +514,9 @@ void ex10()
    {
       cout << "Введите 1 для \"rock\" или 2 для \"scissors\" или 3 для \"paper\"" << endl;
       cin >> userin;
-      cout << "Введите любое число от 0 до 2" << endl;
+      cout << "Введите любое число " << endl;
       cin >> randomi;
-      randomi = randomi // пытаюсь сделать угадывание более сложным
+      randomi = abs(randomi % 3);
 
       switch (userin)
       {
@@ -527,9 +527,9 @@ void ex10()
             cout << "Ничья!" << endl;
             break;
          }
-         else if (rsp[randomi] == "scissiors")
+         else if (rsp[randomi] == "scissors")
          {
-            cout << "Компьютеру выпал scissiors" << endl;
+            cout << "Компьютеру выпал scissors" << endl;
             cout << "Вы победили!" << endl;
             break;
          }
@@ -546,9 +546,9 @@ void ex10()
             cout << "Вы проиграли!" << endl;
             break;
          }
-         else if (rsp[randomi] == "scissiors")
+         else if (rsp[randomi] == "scissors")
          {
-            cout << "Компьютеру выпал scissiors" << endl;
+            cout << "Компьютеру выпал scissors" << endl;
             cout << "Ничья!" << endl;
             break;
          }
@@ -565,9 +565,9 @@ void ex10()
             cout << "Вы победили!" << endl;
             break;
          }
-         else if (rsp[randomi] == "scissiors")
+         else if (rsp[randomi] == "scissors")
          {
-            cout << "Компьютеру выпал scissiors" << endl;
+            cout << "Компьютеру выпал scissors" << endl;
             cout << "Вы проиграли!" << endl;
             break;
          }
@@ -579,6 +579,107 @@ void ex10()
          }
             
       }
+   }
+}
+
+bool IsSimple(int number)
+{
+   if (number < 2)
+   {
+      return false;
+   }
+
+   if (number == 2)
+   {
+      return true;
+   }
+
+   // number / i + 1 - делим число на итератор i, получая наибольший делитель, который мы сравниваем с наименьшим делителем
+   // числа number и если это true, то выпыолняем цикл, а если false, то наименьший делитель строго больше наибольшего и цикл разрывается
+
+   for (int i = 2; i <= number / i + 1; ++i) 
+   {
+      if (number % i == 0)
+      {
+         return false;
+      }
+   }
+   return true;
+}
+
+void ex11() // ex 12 тоже
+{
+   vector <int> simplenumb;
+   int max = 0;
+
+   cout << "Введите значение max, для того, чтобы обозначит верхнюю границу для извлечения простых чисел" << endl;
+   cin >> max;
+ 
+   for (int i = 1; i <= max; ++i)
+   {
+      if (IsSimple(i))
+      {
+         simplenumb.push_back(i);
+      }
+ 
+   }
+   for (vector<int>::iterator it = simplenumb.begin(); it != simplenumb.end(); ++it)
+      cout << *it << " ";
+}
+
+void ex13() // ex 14 тоже
+{
+   int max = 0, p = 2, counter = 1, counter1 = 0;
+   bool flag = 1;
+   vector <int> alln;
+
+   cout << "Введите верхний предел для вычесления простых чисел" << endl;
+   cin >> max;
+
+   //  vector<int>::iterator it1 = alln.begin() + 2;
+
+   for (int i = 2; i <= max; ++i)
+   {
+      alln.push_back(i);
+   }
+
+   while (flag)
+   {
+      for (int i = 0; i <= alln.size() - 1; ++i)
+      {
+         if (alln[i] % p == 0 and alln[i] != p)
+         {
+            vector<int>::iterator it1 = alln.begin() + i;
+            alln.erase(it1);
+         }
+         else
+         {
+            ++counter1; // считает количество простых чисел
+         }
+      }
+
+      if (counter == alln.size() - 1) // условие, которое проверяет достигнуто ли присваивание крайнего числа в векторе, если true, то сбрасываем до 2
+      {
+         p = 2;
+      }
+      else
+      {
+         p = alln[counter];
+         ++counter;
+      }
+      
+      if (counter1 == alln.size()) // условие, которое проверяет совпадает ли количество простых чисел с общим количеством и при условии true - разрывает цикл
+      {
+         flag = false;
+      }
+
+      counter1 = 0;
+   }
+
+
+   for (vector<int>::iterator it = alln.begin(); it != alln.end(); ++it)
+   {
+      cout << *it << " ";
    }
 }
 
@@ -595,7 +696,9 @@ std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
    {"ex6", ex6},
    {"ex7", ex7},
    {"ex8", ex8},
-   {"ex10", ex10}
+   {"ex10", ex10},
+   {"ex11", ex11},
+   {"ex13", ex13}
 };
 
 int main()
