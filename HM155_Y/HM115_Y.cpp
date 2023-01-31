@@ -629,40 +629,52 @@ void ex11() // ex 12 тоже
 
 void ex13() // ex 14 тоже
 {
-   int max = 0, p = 2, counter = 0;
+   int max = 0, p = 2, counter = 1, counter1 = 0;
+   bool flag = 1;
    vector <int> alln;
 
    cout << "Введите верхний предел для вычесления простых чисел" << endl;
    cin >> max;
 
-   alln.reserve(max);
+   //  vector<int>::iterator it1 = alln.begin() + 2;
 
    for (int i = 2; i <= max; ++i)
    {
       alln.push_back(i);
    }
 
-   struct foo
+   while (flag)
    {
-      int p;
-      bool operator () (int value)
+      for (int i = 0; i <= alln.size() - 1; ++i)
       {
-         return value % p == 0 and value != p;
+         if (alln[i] % p == 0 and alln[i] != p)
+         {
+            vector<int>::iterator it1 = alln.begin() + i;
+            alln.erase(it1);
+         }
+         else
+         {
+            ++counter1; // считает количество простых чисел
+         }
       }
-   };
 
-   foo comparator{ 0 };
+      if (counter == alln.size() - 1) // условие, которое проверяет достигнуто ли присваивание крайнего числа в векторе, если true, то сбрасываем до 2
+      {
+         p = 2;
+      }
+      else
+      {
+         p = alln[counter];
+         ++counter;
+      }
+      
+      if (counter1 == alln.size()) // условие, которое проверяет совпадает ли количество простых чисел с общим количеством и при условии true - разрывает цикл
+      {
+         flag = false;
+      }
 
-   do
-   {
-      p = alln[counter];
-      comparator.p = p;
-      auto it = std::remove_if(alln.begin(), alln.end(), comparator);
-      // auto it = std::remove_if(alln.begin(), alln.end(), foo{p});
-      // auto it = std::remove_if(alln.begin(), alln.end(), [p](int value) { return value % p == 0 and value != p; });
-      alln.erase(it, alln.end());
-      ++counter;
-   } while (counter < alln.size());
+      counter1 = 0;
+   }
 
 
    for (vector<int>::iterator it = alln.begin(); it != alln.end(); ++it)
