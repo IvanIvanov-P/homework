@@ -627,16 +627,17 @@ void ex11() // ex 12 тоже
       cout << *it << " ";
 }
 
-void ex13() // ex 14 тоже
+void ex13() // ex 14-15 тоже
 {
-   int max = 0, p = 2, counter = 1, counter1 = 0;
+   int max = 0, p = 2, counter = 1, counter1 = 0, n = 0;
    bool flag = 1;
    vector <int> alln;
 
    cout << "Введите верхний предел для вычесления простых чисел" << endl;
    cin >> max;
 
-   //  vector<int>::iterator it1 = alln.begin() + 2;
+   cout << "Введите количество простых чисел, которые желаете найти" << endl;
+   cin >> n;
 
    for (int i = 2; i <= max; ++i)
    {
@@ -645,7 +646,7 @@ void ex13() // ex 14 тоже
 
    while (flag)
    {
-      for (int i = 0; i <= alln.size() - 1; ++i)
+      for (int i = 0; i < alln.size(); ++i)
       {
          if (alln[i] % p == 0 and alln[i] != p)
          {
@@ -654,11 +655,11 @@ void ex13() // ex 14 тоже
          }
          else
          {
-            ++counter1; // считает количество простых чисел
+            ++counter1; // считает количество оставшихся чисел
          }
       }
 
-      if (counter == alln.size() - 1) // условие, которое проверяет достигнуто ли присваивание крайнего числа в векторе, если true, то сбрасываем до 2
+      if (counter == alln.size()) // условие, которое проверяет достигнуто ли присваивание крайнего числа в векторе, если true, то сбрасываем до 2
       {
          p = 2;
       }
@@ -677,10 +678,57 @@ void ex13() // ex 14 тоже
    }
 
 
-   for (vector<int>::iterator it = alln.begin(); it != alln.end(); ++it)
+   for (vector<int>::iterator it = alln.begin(); it != alln.begin() + n; ++it)
    {
       cout << *it << " ";
    }
+}
+
+void ex16()
+{
+   vector <int> nums;
+   int n = 0, max, min, counter = 0, maxcounter = 0, mode = 0;
+
+   cout << "Введите число, чтобы добавить его в вектор, для прерывания цикла используйте \"|\"" << endl;
+   cin >> n;
+   max = n;
+   min = n;
+   cout << "Введите число, чтобы добавить его в вектор" << endl;
+
+   while (cin >> n)
+   {
+      if (n >= max)
+      {
+         max = n;
+      }
+      else if (n <= min)
+      {
+         min = n;
+      }
+
+      nums.push_back(n);
+      cout << "Введите число, чтобы добавить его в вектор" << endl;
+   }
+
+   for (int i = 0; i < nums.size(); ++i)
+   {
+      for (int j = 0; j < nums.size(); ++j)
+      {
+         if (nums[i] == nums[j])
+         {
+            ++counter;
+         }
+      }
+      if (counter >= maxcounter)
+      {
+         maxcounter = counter;
+         mode = nums[i];
+      }
+      counter = 0;
+   }
+
+   cout << "Минимальное число равно " << min << "\t" << "Максимальное число равно " << max << endl;
+   cout << "Мода равна " << mode << endl;
 }
 
 std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
@@ -698,7 +746,8 @@ std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
    {"ex8", ex8},
    {"ex10", ex10},
    {"ex11", ex11},
-   {"ex13", ex13}
+   {"ex13", ex13},
+   {"ex16", ex16}
 };
 
 int main()
