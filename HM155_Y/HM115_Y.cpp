@@ -691,6 +691,7 @@ void ex16()
 
    cout << "Введите число, чтобы добавить его в вектор, для прерывания цикла используйте \"|\"" << endl;
    cin >> n;
+   nums.push_back(n);
    max = n;
    min = n;
    cout << "Введите число, чтобы добавить его в вектор" << endl;
@@ -731,6 +732,68 @@ void ex16()
    cout << "Мода равна " << mode << endl;
 }
 
+void ex17()
+{
+   vector <int> nums;
+   string ask = "", strs = "", mode = "";
+   int n = 0, counter = 0, maxcounter = 0, min = 0, max = 0;
+   
+   while (true) 
+   {
+      cout << "Если выхотите ввести строку, то наберите \"str\", а если число, то \"numb\"" << endl;
+      cin >> ask;
+
+      if (ask == "str")
+      {
+         cout << "Введите строку, чтобы найти её моду" << endl;
+         cin >> strs;
+         for (int i = 0; i < strs.size(); ++i)
+         {
+            for (int j = 0; j < strs.size(); ++j)
+            {
+               if (strs[i] == strs[j])
+               {
+                  ++counter;
+               }
+            }
+            if (counter >= maxcounter)
+            {
+               maxcounter = counter;
+               mode = strs[i];
+            }
+            counter = 0;
+         }
+         cout << "Мода равна " << mode << endl;
+      }
+      else if (ask == "numb")
+      {
+         cout << "Последовательно вводите числа, затем введите \"|\" для вывода результата" << endl;
+         cout << "Введите число, чтобы добавить его в вектор" << endl;
+         cin >> n;
+         nums.push_back(n);
+         max = n;
+         min = n;
+         cout << "Введите число, чтобы добавить его в вектор" << endl;
+
+         while (cin >> n)
+         {
+            if (n >= max)
+            {
+               max = n;
+            }
+            else if (n <= min)
+            {
+               min = n;
+            }
+
+            nums.push_back(n);
+            cout << "Введите число, чтобы добавить его в вектор" << endl;
+         }
+      nums.clear();
+      }
+   }
+}
+
 std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
 {
    {"0", prelude},
@@ -747,7 +810,8 @@ std::unordered_map<std::string, std::function<void()>> TASKS_MAP =
    {"ex10", ex10},
    {"ex11", ex11},
    {"ex13", ex13},
-   {"ex16", ex16}
+   {"ex16", ex16},
+   {"ex17", ex17}
 };
 
 int main()
