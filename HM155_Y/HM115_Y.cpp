@@ -842,41 +842,79 @@ void ex18()
 //NoName 0. Убедитесь, что каждое имя уникально, и выведите сообщение об
 //ошибке, если имяв ведено дважды. Выведите на печать все пары (имя, баллы) по
 //одной в строке.
+//
+//Измените программу из упр. 19 так, чтобы при вводе имени она выводила соот -
+//ветствующее количество баллов или сообщение "name not found".
+//
+//Измените программу из упр. 19 так, чтобы при вводе целого числа она выводила
+//все имена студентов, получивших заданное количество баллов или сообщение
+//"score not found".
 void ex19()
 {
    vector <string> names;
    vector <int> scores;
    string name = "";
    int score = 0;
+   bool flag = false, flagfor = false;
 
    while (true)
    {
       cout << "Введите имя" << endl;
       cin >> name;
-      names.push_back(name);
 
-      cout << "Введите возраст" << endl;
-      cin >> score;
-      scores.push_back(score);
+      if (names.size() == 0)
+      {
+         cout << "name not found" << endl;
+      }
 
-      for (int i = 0; i < names.size() - 1; ++i)
+      for (int i = 0; i < names.size(); ++i)
       {
          if (names[i] == name)
          {
-            cout << "Имя введено дважды!" << endl;
-            names.pop_back();
-            scores.pop_back();
+            cout << "Количество очков равно =\t" << scores[i] << endl;
+            flag = true;
             break;
+         }
+         else if (i == names.size() - 1 and name != "NoName")
+         {
+            cout << "name not found" << endl;
+         }
+      }
+
+      cout << "Введите количество очков" << endl;
+      cin >> score;
+
+      for (int i = 0; i < scores.size(); ++i)
+      {
+         if (scores[i] == score)
+         {
+            cout << names[i] << endl;
+         }
+         
+         if (name != names[i] and scores[i] != score) // Проверка на то, что это будет новый score и он не будет совпадать ни с одним именем
+         {
+            flagfor = true;
          }
       }
 
       if (name == "NoName" and score == 0)
       {
-         names.pop_back();
-         scores.pop_back();
          cout << "Ошибка!!!" << endl;
          break;
       }
+
+      if (flagfor == true)
+      {
+         cout << "score not found" << endl;
+         flagfor = false;
+      }
+
+      if (flag == false)
+      {
+         names.push_back(name);
+         scores.push_back(score);
+      }
+      flag = false;
    }
 
    for (int i = 0; i < names.size(); ++i)
