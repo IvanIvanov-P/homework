@@ -850,12 +850,40 @@ void ex18()
 //все имена студентов, получивших заданное количество баллов или сообщение
 //"score not found".
 
-bool Nametest(string name, vector <string> names, vector <int> scores)
+bool testnames(string name, vector <string> names, vector <int> scores)
 {
-   for (int i = 0; i < names.size(); ++i)
-   {
-      if (name == names[i])
-   }
+    for (int i = 0; i < names.size(); ++i)
+    {
+        if (name == names[i])
+        {
+            cout << scores[i] << endl;
+            return true;
+        }
+    }
+    cout << "name not found" << endl;
+    return false;
+}
+
+bool testscores(int score, vector <int> scores, vector <string> names)
+{
+    bool flag = false;
+    for (int i = 0; i < scores.size(); ++i)
+    {
+        if (score == scores[i])
+        {
+           cout << names[i] << endl;
+           flag = true;
+        }
+    }
+
+    if (flag == false)
+    {
+       return false;
+    }
+    else
+    {
+       return true;
+    }
 }
 
 void ex19()
@@ -866,10 +894,41 @@ void ex19()
    int score = 0;
    
    cout << "Введите имя и количество очков" << endl;
+   cin >> name >> score;
+
+   if (name == "NoName" and score == 0)
+   {
+      return;
+   }
+   else
+   {
+      names.push_back(name);
+      scores.push_back(score);
+      cout << "name not found" << endl;
+      cout << "score not found" << endl;
+   }
+
+   cout << "Введите имя и количество очков" << endl;
 
    while (cin >> name >> score)
    {
-      
+       if (name == "NoName" and score == 0)
+       {
+           break;
+       }
+
+       if (testscores(score, scores, names) == false)
+       {
+          cout << "score not found" << endl;
+       }
+
+       if (testnames(name, names, scores) == false)
+       {
+           names.push_back(name);
+           scores.push_back(score);
+       }
+ 
+       cout << "Введите имя и количество очков" << endl;
    }
 
    for (int i = 0; i < names.size(); ++i)
